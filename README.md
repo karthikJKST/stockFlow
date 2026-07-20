@@ -1,91 +1,329 @@
-# StockFlow — Market Intelligence Dashboard
+<div align="center">
 
-A real-time stock market tracking and simulated trading dashboard built with Spring Boot and React.
+# 📈 StockFlow — Market Intelligence Dashboard
 
-## Features
+**Real-time stock market tracking and simulated trading platform**
+
+[![CI](https://github.com/karthikJKST/stockFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/karthikJKST/stockFlow/actions/workflows/ci.yml)
+[![Java](https://img.shields.io/badge/Java-21-%23ED8B00?logo=openjdk)](https://adoptium.net/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4-%236DB33F?logo=springboot)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-18-%2361DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.4-%233178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-%23646CFF?logo=vite)](https://vite.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-success" alt="Active">
+  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen" alt="PRs Welcome">
+</p>
+
+---
+
+**Live Demo** · [Report Bug](https://github.com/karthikJKST/stockFlow/issues) · [Request Feature](https://github.com/karthikJKST/stockFlow/issues)
+
+</div>
+
+---
+
+## ✨ Features
 
 ### 📊 Market Overview
-- **Live Market Indices** — S&P 500, NASDAQ, Dow Jones, SENSEX, NIFTY 50 with real-time updates
-- **Market Stats** — Total stocks tracked, 24h volume, advancers/decliners
-- **Top Gainers & Losers** — See which stocks are moving the market
+| Feature | Description |
+|---------|-------------|
+| **Live Indices** | S&P 500, NASDAQ, Dow Jones, SENSEX, NIFTY 50 with real-time updates |
+| **Market Stats** | Total stocks, 24h volume, advancers vs decliners |
+| **Top Movers** | Biggest gainers and losers with price and percentage changes |
+| **Heatmap** | Visual sector performance overview |
 
 ### 📈 Stock Browser & Detail
-- **Searchable Stock List** — Filter by name or symbol with watchlist support
-- **Candlestick Charts** — Professional-grade charts using TradingView's Lightweight Charts™
-- **Time Range Selector** — Switch between 1W, 1M, and 3M views
-- **Key Statistics** — Open, High, Low, Volume, Market Cap at a glance
+| Feature | Description |
+|---------|-------------|
+| **Search & Filter** | Search by name/symbol, filter by price range or change % |
+| **Screener** | Advanced filtering with sort by price, change, or symbol |
+| **Candlestick Charts** | Professional charts via TradingView Lightweight Charts™ |
+| **Technical Indicators** | Moving Averages (SMA 20/50), Bollinger Bands, RSI, MACD |
+| **Time Ranges** | 1 week, 1 month, 3 months, 1 year |
+| **Order Book** | Simulated bid/ask depth view |
+| **Price Alerts** | Set notifications for price crossing thresholds |
+| **Currency Toggle** | Switch between USD ($) and INR (₹) |
 
 ### 💰 Simulated Trading
-- **Buy/Sell Panel** — Quick trade UI with quantity controls and order summary
-- **Portfolio Tracking** — Real-time P&L, allocation pie chart, and holdings table
-- **Trade History** — Complete record of all executed trades
-- **Cash Management** — Available balance auto-updates after each trade
+| Feature | Description |
+|---------|-------------|
+| **Buy/Sell Panel** | Quick trade UI with quantity controls and order summary |
+| **Portfolio Tracking** | Real-time P&L, allocation pie chart, holdings table |
+| **Trade History** | Complete record of all executed trades |
+| **Cash Management** | $100,000 starting balance, auto-updates after trades |
 
 ### 📰 Market News
-- **Curated News Feed** — 15 stock market articles with sentiment analysis
-- **Filter by Sentiment** — Bullish, Bearish, or Neutral filtering
-- **Symbol Tagging** — Filter news by related stock symbol
+| Feature | Description |
+|---------|-------------|
+| **Curated Feed** | 15 stock market articles with sentiment analysis |
+| **Filtering** | By sentiment (Bullish/Bearish/Neutral) or stock symbol |
 
 ### ⚡ Live Simulation
-- **Price Tick Engine** — Realistic random-walk price movements every 10 seconds
-- **Market Updates** — Indices and stock prices update in real-time
-- **Start/Stop Control** — Toggle live simulation from the sidebar
+| Feature | Description |
+|---------|-------------|
+| **Price Engine** | Realistic random-walk price movements every 10 seconds |
+| **Flash Effects** | Visual price change indicators (green up, red down) |
+| **Start/Stop** | Toggle live simulation from sidebar |
+| **WebSocket** | Real-time updates via STOMP/SockJS |
 
-### 🎨 UI/UX
-- **Dark Theme** — Professional trading dashboard aesthetic with glass morphism
-- **Responsive Design** — Desktop, tablet, and mobile layouts
-- **Watchlist** — Star your favorite stocks for quick access
-- **Animations** — Smooth transitions and micro-interactions throughout
+### 🎨 User Experience
+| Feature | Description |
+|---------|-------------|
+| **Dark Theme** | Professional trading aesthetic with glass morphism |
+| **Light Mode** | Toggle to light theme for daytime use |
+| **Responsive** | Desktop, tablet, and mobile layouts |
+| **Watchlist** | Star favorites for quick access |
+| **Animations** | Count-up numbers, staggered list animations, price flashes |
+| **Sounds** | Optional alert sounds for price triggers |
 
-## Tech Stack
+---
 
-| Layer | Technology |
-|-------|-----------|
-| **Backend** | Java 21, Spring Boot 3.4, Spring Data JPA, H2/PostgreSQL |
-| **Frontend** | React 18, TypeScript, Vite |
-| **Charts** | Lightweight Charts™ (TradingView), Recharts |
-| **Icons** | Lucide React |
-| **Validation** | Bean Validation, TypeScript strict mode |
-| **Database** | H2 (dev), PostgreSQL (production via Docker) |
+## 🛠 Tech Stack
 
-## Quick Start
+| Layer | Technology | Version |
+|-------|-----------|---------|
+| **Backend Runtime** | Java (OpenJDK) | 21 |
+| **Backend Framework** | Spring Boot | 3.4 |
+| **ORM** | Spring Data JPA | — |
+| **Auth** | JWT (jjwt) + Spring Security | 0.12.6 |
+| **Database** | H2 (dev) / PostgreSQL 16 (prod) | — |
+| **API Docs** | SpringDoc OpenAPI | 2.8.5 |
+| **WebSocket** | STOMP over SockJS | — |
+| | | |
+| **Frontend** | React | 18 |
+| **Language** | TypeScript | 5.4 |
+| **Bundler** | Vite | 5.4 |
+| **Charts** | Lightweight Charts™ (TradingView) | 4.1 |
+| **Charts (alt)** | Recharts | 2.12 |
+| **Icons** | Lucide React | 0.344 |
+| **Styling** | CSS Custom Properties (Glass morphism) | — |
+| **Real-time** | @stomp/stompjs + sockjs-client | — |
 
-Prerequisites: **JDK 21+**, Maven 3.9+, Node 20+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+| Requirement | Version | Check |
+|-------------|---------|-------|
+| **JDK** | 21+ | `java -version` |
+| **Maven** | 3.9+ | `mvn -version` |
+| **Node.js** | 20+ | `node -v` |
+| **npm** | 10+ | `npm -v` |
+
+### 1. Clone & Install
 
 ```bash
-# Terminal 1 — Start the API
+git clone https://github.com/karthikJKST/stockFlow.git
+cd stockFlow
+```
+
+### 2. Start the Backend
+
+```bash
 cd backend
 mvn spring-boot:run
+```
 
-# Terminal 2 — Start the UI
+The API starts at **http://localhost:8080**. The H2 console is available at `/h2-console`.
+
+### 3. Start the Frontend
+
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-Open **http://localhost:5173** in your browser.
+The UI opens at **http://localhost:5173**.
 
-Click **"Start Live"** in the sidebar to begin price simulation.
+### 4. Log In
 
-## API Endpoints
+Use one of the preloaded demo accounts:
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/market/overview` | Market indices, stats, gainers/losers |
-| GET | `/api/stocks` | List all stocks |
-| GET | `/api/stocks/search?q=` | Search stocks by name/symbol |
-| GET | `/api/stocks/{id}` | Stock detail with price history |
-| GET | `/api/stocks/{id}/prices?range=` | Filtered price history (1W, 1M, 3M, 1Y) |
-| GET | `/api/portfolio` | Portfolio holdings, P&L, trade history |
-| POST | `/api/trade` | Execute buy/sell trade |
-| GET | `/api/news` | Market news feed |
-| GET | `/api/news?symbol=` | Filter news by stock symbol |
-| POST | `/api/simulate/tick` | Trigger price simulation tick |
+| Username | Password | Display Name |
+|----------|----------|-------------|
+| `demo` | `demo123` | Alex Kumar |
+| `alice` | `alice123` | Alice Chen |
+| `bob` | `bob123` | Bob Smith |
 
-## Docker (PostgreSQL)
+### 5. Activate Live Simulation
+
+Click **"Start Live"** in the sidebar to begin real-time price updates.
+
+---
+
+## 🐳 Docker Deployment (PostgreSQL)
 
 ```bash
 docker compose up
 ```
 
-Uses PostgreSQL 16 with automatic schema updates and preloaded sample data.
+This starts:
+- **PostgreSQL 16** on port `5432`
+- **StockFlow API** on port `8080`
+
+The backend auto-configures with PostgreSQL and seeds sample data on first run.
+
+---
+
+## 🔧 Environment Variables
+
+Create a `.env` file in the backend directory (see [`.env.example`](backend/.env.example)):
+
+```bash
+# Optional — uses simulated data if not set
+FINNHUB_API_KEY=
+
+# REQUIRED for production — change to a strong secret!
+JWT_SECRET=
+
+# PostgreSQL password (matches docker-compose.yml)
+DB_PASSWORD=stockflow
+```
+
+---
+
+## 📡 API Reference
+
+### Authentication
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/login` | Sign in (returns JWT) |
+| POST | `/api/auth/register` | Create account |
+| GET | `/api/auth/me` | Current user info |
+| PUT | `/api/auth/theme` | Update theme preference |
+
+### Market Data
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/market/overview` | Indices, stats, gainers/losers |
+| GET | `/api/stocks` | List all stocks |
+| GET | `/api/stocks/search?q=` | Search by name/symbol |
+| GET | `/api/stocks/{id}` | Stock detail with history |
+| GET | `/api/stocks/{id}/prices?range=` | Filtered price history |
+| GET | `/api/stocks/{id}/indicators` | Technical indicators |
+
+### Trading
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/portfolio` | Holdings, P&L, trade history |
+| POST | `/api/trade` | Execute buy/sell |
+
+### Other
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/news` | Market news feed |
+| GET | `/api/news?symbol=` | Filter by symbol |
+| POST | `/api/simulate/tick` | Trigger price tick |
+
+---
+
+## 👷 CI/CD
+
+Every push and pull request to `main` triggers automated builds via **GitHub Actions**:
+
+| Job | What it does |
+|-----|-------------|
+| **Backend** | `mvn compile` → `mvn test` → `mvn package` on JDK 21 |
+| **Frontend** | `npm ci` → `tsc --noEmit` → `vite build` on Node.js 22 |
+| **Docker** | Builds backend Docker image with GHA caching |
+| **Summary** | Reports pass/fail badges for all jobs |
+
+![CI Pipeline](https://github.com/karthikJKST/stockFlow/actions/workflows/ci.yml/badge.svg)
+
+---
+
+## 📁 Project Structure
+
+```
+StockFlow/
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # GitHub Actions CI pipeline
+├── backend/
+│   ├── src/main/java/com/stockflow/api/
+│   │   ├── ApiController.java         # Market data & trade endpoints
+│   │   ├── AuthController.java        # Login/register
+│   │   ├── StockModels.java           # Domain models
+│   │   ├── Repositories.java          # JPA repositories
+│   │   ├── JwtUtil.java               # JWT token handling
+│   │   ├── JwtAuthFilter.java         # Auth filter
+│   │   ├── SecurityConfig.java        # Security config
+│   │   ├── FinnhubService.java        # External API integration
+│   │   ├── PriceSimulator.java        # Random-walk price engine
+│   │   ├── PricePublisher.java        # WebSocket publisher
+│   │   ├── WebSocketConfig.java       # WebSocket config
+│   │   ├── DataInitializer.java       # Sample data seeder
+│   │   ├── IndicatorsService.java     # Technical indicators
+│   │   └── User.java / UserRepository.java
+│   ├── src/main/resources/
+│   │   ├── application.yml            # H2 dev config
+│   │   └── application-postgres.yml   # PostgreSQL prod config
+│   ├── Dockerfile
+│   ├── pom.xml
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── App.tsx                    # Root app with routing
+│   │   ├── components/
+│   │   │   ├── MarketOverview.tsx      # Dashboard
+│   │   │   ├── StockListView.tsx       # Stock table
+│   │   │   ├── StockDetailView.tsx     # Stock detail + chart
+│   │   │   ├── CandlestickChart.tsx    # TradingView chart
+│   │   │   ├── TradingPanel.tsx        # Buy/sell interface
+│   │   │   ├── PortfolioView.tsx       # Portfolio + P&L
+│   │   │   ├── CompareView.tsx         # Stock comparison
+│   │   │   ├── NewsFeed.tsx            # News feed
+│   │   │   ├── AuthModal.tsx           # Login/register modal
+│   │   │   ├── NotificationPanel.tsx   # Notifications
+│   │   │   ├── OrderBook.tsx           # Order book depth
+│   │   │   └── ... (StockScreener, FeedbackCard, etc.)
+│   │   ├── context/AuthContext.tsx      # Auth state management
+│   │   ├── utils/useCountUp.ts         # Count-up animation hook
+│   │   └── styles.css                  # All application styles
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   └── .env.example
+├── docker-compose.yml
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── LICENSE
+├── CONTRIBUTING.md
+└── README.md
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Quick steps:**
+1. Fork the repo
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'feat: add amazing feature'`
+4. Push: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
+
+---
+
+<div align="center">
+  Made with ❤️ by <a href="https://github.com/karthikJKST">Karthik JKST</a>
+</div>
