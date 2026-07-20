@@ -20,6 +20,9 @@ finnhub:
   api-key: ${FINNHUB_API_KEY:}
 
 jwt:
+  # ⚠️ IMPORTANT: Override JWT_SECRET env var in production!
+  # The default below is a well-known DEVELOPMENT-ONLY value.
+  # Set the JWT_SECRET environment variable to a strong, unique secret.
   secret: ${JWT_SECRET:StockFlowDevSecret2026SuperSecretKeyForJWT}
   expiration-ms: 86400000
 
