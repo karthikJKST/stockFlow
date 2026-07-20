@@ -26,10 +26,9 @@ jobs:
         run: mvn compile -q
         working-directory: StockFlow/backend
 
-      - name: Run backend tests (if any)
+      - name: Run backend tests
         run: mvn test -q
         working-directory: StockFlow/backend
-        continue-on-error: true
 
       - name: Package backend JAR
         run: mvn package -DskipTests -q
@@ -111,11 +110,30 @@ jobs:
 
     steps:
       - name: Check workflow status
+        env:
+          BACKEND_RESULT: ${{ needs.backend.result }}
+          FRONTEND_RESULT: ${{ needs.frontend.result }}
+          DOCKER_RESULT: ${{ needs.docker.result }}
         run: |
+          badge() {
+            case "$1" in
+              success) echo "✅ Passed";;
+              failure) echo "❌ Failed";;
+              skipped) echo "⏭️ Skipped";;
+              cancelled) echo "🚫 Cancelled";;
+              *) echo "⬜ $1";;
+            esac
+          }
           echo "## StockFlow CI Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Backend (Build & Test) | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
-          echo "| Frontend (Build & Typecheck) | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
-          echo "| Docker (Image Build) | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Backend (Build & Test) | $(badge $BACKEND_RESULT) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Frontend (Build & Typecheck) | $(badge $FRONTEND_RESULT) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Docker (Image Build) | $(badge $DOCKER_RESULT) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "$BACKEND_RESULT" = "success" ] && [ "$FRONTEND_RESULT" = "success" ] && [ "$DOCKER_RESULT" = "success" ]; then
+            echo "🎉 All checks passed!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Some checks failed — review logs above." >> $GITHUB_STEP_SUMMARY
+          fi
