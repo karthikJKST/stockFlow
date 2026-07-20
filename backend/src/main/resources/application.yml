@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: stockflow-api
+  datasource:
+    url: jdbc:h2:mem:stockflow;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+finnhub:
+  api-key: ${FINNHUB_API_KEY:}
+
+jwt:
+  secret: ${JWT_SECRET:StockFlowDevSecret2026SuperSecretKeyForJWT}
+  expiration-ms: 86400000
+
+server:
+  port: 8080
