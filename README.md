@@ -19,7 +19,7 @@
 
 ---
 
-**Live Demo** · [Report Bug](https://github.com/karthikJKST/stockFlow/issues) · [Request Feature](https://github.com/karthikJKST/stockFlow/issues)
+**Live Demo** (Coming soon — deploy using the guide below) · [Report Bug](https://github.com/karthikJKST/stockFlow/issues) · [Request Feature](https://github.com/karthikJKST/stockFlow/issues)
 
 </div>
 
@@ -171,20 +171,101 @@ The backend auto-configures with PostgreSQL and seeds sample data on first run.
 
 ---
 
+## 🚀 Deployment Guide
+
+StockFlow is designed to be deployed with **Vercel** (frontend) + **Render** (backend) + **Neon** (PostgreSQL).
+
+### Step 1: Database — Neon PostgreSQL
+
+1. Go to [neon.tech](https://neon.tech) and sign up
+2. Create a new project (choose any region)
+3. Copy the **connection string** — it looks like:
+   ```
+   postgresql://user:password@ep-xxxx.us-east-2.aws.neon.tech/stockflow?sslmode=require
+   ```
+
+### Step 2: Backend — Render
+
+1. Go to [dashboard.render.com](https://dashboard.render.com) and sign up
+2. Click **New +** → **Web Service**
+3. Connect your GitHub repo (`karthikJKST/stockFlow`)
+4. Configure:
+   - **Name**: `stockflow-api`
+   - **Runtime**: `Java` (Render auto-detects Maven)
+   - **Build Command**: `cd backend && mvn clean package -DskipTests -B`
+   - **Start Command**: `java -jar backend/target/stockflow-api-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod`
+   - **Plan**: Free
+5. Add these **Environment Variables**:
+
+| Variable | Value |
+|----------|-------|
+| `SPRING_PROFILES_ACTIVE` | `prod` |
+| `DB_URL` | Your Neon connection string |
+| `DB_USERNAME` | Neon database username |
+| `DB_PASSWORD` | Neon database password |
+| `JWT_SECRET` | A strong random string (min 32 chars) |
+| `CORS_ORIGINS` | Your Vercel frontend URL (e.g. `https://stockflow.vercel.app`) |
+| `FINNHUB_API_KEY` | *(optional)* Your Finnhub API key |
+
+6. Click **Deploy**
+7. Once deployed, note your backend URL: `https://stockflow-api.onrender.com`
+
+### Step 3: Frontend — Vercel
+
+1. Go to [vercel.com](https://vercel.com) and sign up
+2. Click **Add New** → **Project**
+3. Import your GitHub repo (`karthikJKST/stockFlow`)
+4. Configure:
+   - **Framework Preset**: Vite
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build` (default)
+   - **Output Directory**: `dist` (default)
+5. Add these **Environment Variables**:
+
+| Variable | Value |
+|----------|-------|
+| `VITE_API_URL` | Your Render backend URL + `/api` (e.g. `https://stockflow-api.onrender.com/api`) |
+| `VITE_WS_URL` | Your Render backend URL + `/ws` (e.g. `https://stockflow-api.onrender.com/ws`) |
+
+6. Click **Deploy**
+7. Once deployed, note your frontend URL: `https://stockflow.vercel.app`
+
+### Step 4: Update CORS
+
+After the frontend is deployed, go back to **Render Dashboard** → **stockflow-api** → **Environment** and update `CORS_ORIGINS` to include your Vercel URL:
+```
+https://stockflow.vercel.app,http://localhost:5173
+```
+Then click **Manual Deploy** → **Deploy latest commit** to restart the backend with the new CORS settings.
+
+### Step 5: Verify
+
+- **Health**: `https://stockflow-api.onrender.com/api/health` should return `{"status":"UP"}`
+- **Frontend**: Visit your Vercel URL, register a new account, and start trading!
+
+---
+
 ## 🔧 Environment Variables
 
-Create a `.env` file in the backend directory (see [`.env.example`](backend/.env.example)):
+### Backend
 
-```bash
-# Optional — uses simulated data if not set
-FINNHUB_API_KEY=
+| Variable | Required | Description | Default |
+|----------|----------|-------------|---------|
+| `DB_URL` | ✅ | PostgreSQL JDBC URL | — |
+| `DB_USERNAME` | ✅ | Database username | — |
+| `DB_PASSWORD` | ✅ | Database password | — |
+| `JWT_SECRET` | ✅ | JWT signing secret (min 32 chars) | Dev-only default |
+| `CORS_ORIGINS` | ✅ | Comma-separated allowed origins | `http://localhost:5173` |
+| `SPRING_PROFILES_ACTIVE` | ✅ | Spring profile | `postgres` (dev) / `prod` (render) |
+| `PORT` | ❌ | Server port (Render sets this) | `8080` |
+| `FINNHUB_API_KEY` | ❌ | Finnhub API key for live data | Simulated data |
 
-# REQUIRED for production — change to a strong secret!
-JWT_SECRET=
+### Frontend
 
-# PostgreSQL password (matches docker-compose.yml)
-DB_PASSWORD=stockflow
-```
+| Variable | Required | Description | Default |
+|----------|----------|-------------|---------|
+| `VITE_API_URL` | ✅ | Backend API base URL | `http://localhost:8080/api` |
+| `VITE_WS_URL` | ✅ | WebSocket endpoint URL | `http://localhost:8080/ws` |
 
 ---
 
