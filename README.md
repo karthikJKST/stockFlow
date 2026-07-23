@@ -270,14 +270,23 @@ npm run build
 
 ## 📸 Screenshots
 
-| View | Screenshot |
-|------|-----------|
-| **Market Overview** | ![Dashboard](assets/dashboard.png) |
-| **Stock List** | ![Stocks](assets/stocks.png) |
-| **Stock Detail** | ![Stock Detail](assets/stock-detail.png) |
-| **Portfolio** | ![Portfolio](assets/portfolio.png) |
-| **Compare View** | ![Compare](assets/compare.png) |
-| **News Feed** | ![News](assets/news.png) |
+### Market Overview
+[![Dashboard](assets/dashboard.png =720x450)](assets/dashboard.png)
+
+### Stock List
+[![Stocks](assets/stocks.png =720x450)](assets/stocks.png)
+
+### Stock Detail
+[![Stock Detail](assets/stock-detail.png =720x450)](assets/stock-detail.png)
+
+### Portfolio
+[![Portfolio](assets/portfolio.png =720x450)](assets/portfolio.png)
+
+### Compare View
+[![Compare](assets/compare.png =720x450)](assets/compare.png)
+
+### News Feed
+[![News](assets/news.png =720x450)](assets/news.png)
 
 ---
 
