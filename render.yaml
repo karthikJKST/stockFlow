@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: stockflow-api
+    env: java
+    region: oregon
+    plan: free
+    buildCommand: cd backend && mvn clean package -DskipTests -B
+    startCommand: java -jar backend/target/stockflow-api-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: CORS_ORIGINS
+        sync: false
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FINNHUB_API_KEY
+        sync: false

@@ -9,7 +9,7 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@RestController @RequestMapping("/api") @CrossOrigin(origins = "http://localhost:5173")
+@RestController @RequestMapping("/api")
 class ApiController {
     private final StockRepository stocks;
     private final StockPriceRepository prices;
@@ -398,6 +398,17 @@ class ApiController {
                 indices.save(index);
             }
         }
+    }
+
+    // ── Health ──
+
+    @GetMapping("/health")
+    Map<String, Object> health() {
+        return Map.of(
+            "status", "UP",
+            "service", "StockFlow API",
+            "timestamp", System.currentTimeMillis()
+        );
     }
 
     record TradeInput(Long stockId, TradeType type, int shares) {}

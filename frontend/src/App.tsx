@@ -25,8 +25,8 @@ import {
   SkeletonStockDetail
 } from './components/SkeletonLoaders'
 
-const API = 'http://localhost:8080/api'
-const WS_URL = 'http://localhost:8080/ws'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8080/api'
+const WS_URL = import.meta.env.VITE_WS_URL || 'http://localhost:8080/ws'
 const INR_RATE = 83.5 // 1 USD ≈ ₹83.5
 
 export type Stock = {
