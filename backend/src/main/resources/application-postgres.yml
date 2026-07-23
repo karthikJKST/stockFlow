@@ -3,6 +3,7 @@ spring:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/stockflow}
     username: ${DB_USERNAME:stockflow}
     password: ${DB_PASSWORD:stockflow}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update

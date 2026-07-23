@@ -1,9 +1,10 @@
 spring:
   application:
     name: stockflow-api
+  # Default datasource: H2 for local dev. Driver is auto-detected from the URL.
+  # Production (profile=prod) overrides url/username/password + explicitly sets PostgreSQL driver.
   datasource:
     url: jdbc:h2:mem:stockflow;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
-    driver-class-name: org.h2.Driver
     username: sa
     password:
   jpa:
