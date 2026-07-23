@@ -271,22 +271,22 @@ npm run build
 ## 📸 Screenshots
 
 ### Market Overview
-[![Dashboard](assets/dashboard.png =720x450)](assets/dashboard.png)
+<a href="assets/dashboard.png"><img src="assets/dashboard.png" width="720" alt="Dashboard" /></a>
 
 ### Stock List
-[![Stocks](assets/stocks.png =720x450)](assets/stocks.png)
+<a href="assets/stocks.png"><img src="assets/stocks.png" width="720" alt="Stocks" /></a>
 
 ### Stock Detail
-[![Stock Detail](assets/stock-detail.png =720x450)](assets/stock-detail.png)
+<a href="assets/stock-detail.png"><img src="assets/stock-detail.png" width="720" alt="Stock Detail" /></a>
 
 ### Portfolio
-[![Portfolio](assets/portfolio.png =720x450)](assets/portfolio.png)
+<a href="assets/portfolio.png"><img src="assets/portfolio.png" width="720" alt="Portfolio" /></a>
 
 ### Compare View
-[![Compare](assets/compare.png =720x450)](assets/compare.png)
+<a href="assets/compare.png"><img src="assets/compare.png" width="720" alt="Compare" /></a>
 
 ### News Feed
-[![News](assets/news.png =720x450)](assets/news.png)
+<a href="assets/news.png"><img src="assets/news.png" width="720" alt="News" /></a>
 
 ---
 
