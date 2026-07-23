@@ -51,6 +51,15 @@ By participating in this project, you agree to maintain a respectful and inclusi
 - Ensure all CI checks pass before requesting review.
 - Reference any related issues in the PR description.
 
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration:
+
+- **CI**: Runs on every push — builds both frontend and backend, runs linters, and executes tests.
+- **CD**: Automatically builds and publishes Docker images to GitHub Container Registry on release tags.
+
+Ensure all CI checks pass before requesting a review.
+
 ## Development Setup
 
 See the [README](README.md#quick-start) for detailed setup instructions.
