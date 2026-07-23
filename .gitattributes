@@ -30,6 +30,14 @@
 Dockerfile text eol=lf
 Dockerfile.* text eol=lf
 
+# Maven wrapper
+mvnw text eol=lf
+mvnw.cmd text eol=crlf
+
+# Environment files
+.env text eol=lf
+.env.* text eol=lf
+
 # Git
 .gitignore text eol=lf
 .gitattributes text eol=lf
