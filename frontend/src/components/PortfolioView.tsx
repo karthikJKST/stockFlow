@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line } from 'recharts'
-import { TrendingUp, TrendingDown, DollarSign, Wallet, ArrowUpRight, ArrowDownRight, Clock, BarChart3, Briefcase, Download, TrendingUp as TrendingUpIcon, Activity, AlertTriangle } from 'lucide-react'
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, LineChart, Line } from 'recharts'
+import { TrendingUp, TrendingDown, DollarSign, Wallet, ArrowUpRight, ArrowDownRight, BarChart3, Briefcase, Download, Activity, AlertTriangle } from 'lucide-react'
 import { SkeletonPortfolio } from './SkeletonLoaders'
 import { useFormattedCountUp } from '../utils/useCountUp'
 import type { PortfolioData } from '../App'
@@ -152,7 +152,7 @@ export default function PortfolioView({ portfolio, onStockSelect, formatMoney, f
       <div className="panel glass">
         <div className="panel-header">
           <div className="panel-title-row">
-            <TrendingUpIcon size={18} />
+            <TrendingUp size={18} />
             <h2>Portfolio Performance (30D)</h2>
           </div>
           <button className="btn btn-outline" onClick={exportPortfolio}>

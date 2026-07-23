@@ -1,4 +1,4 @@
-import { Activity, BarChart3, Briefcase, TrendingUp, TrendingDown } from 'lucide-react'
+import { Activity, BarChart3, Briefcase, TrendingUp } from 'lucide-react'
 
 /** A pulsing placeholder bar */
 function SkeletonBar({ width = '100%', height = 14, style }: { width?: string | number; height?: number; style?: React.CSSProperties }) {
