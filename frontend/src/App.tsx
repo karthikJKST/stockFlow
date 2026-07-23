@@ -185,19 +185,20 @@ export default function App() {
     if (stompClientRef.current?.connected) return
     setSimulating(true)
 
-    await authFetch(`${API}/ws/start`, { method: 'POST' })
+    try {
+      await authFetch(`${API}/ws/start`, { method: 'POST' })
 
-    const client = new Client({
-      webSocketFactory: () => new SockJS(WS_URL),
-      reconnectDelay: 2000,
-      heartbeatIncoming: 10000,
-      heartbeatOutgoing: 10000,
-      onConnect: () => {
-        client.subscribe('/topic/prices', (message: IMessage) => {
-          try {
-            const snapshot = JSON.parse(message.body)
-            if (snapshot.dataSource) setDataSource(snapshot.dataSource)
-            if (snapshot.stocks) {
+      const client = new Client({
+        webSocketFactory: () => new SockJS(WS_URL),
+        reconnectDelay: 2000,
+        heartbeatIncoming: 10000,
+        heartbeatOutgoing: 10000,
+        onConnect: () => {
+          client.subscribe('/topic/prices', (message: IMessage) => {
+            try {
+              const snapshot = JSON.parse(message.body)
+              if (snapshot.dataSource) setDataSource(snapshot.dataSource)
+              if (snapshot.stocks) {
               const newFlash = new Map<number, 'up' | 'down'>()
               const prev = prevPricesRef.current
               for (const s of snapshot.stocks as Stock[]) {
@@ -284,8 +285,11 @@ export default function App() {
       onStompError: () => setSimulating(false),
     })
 
-    client.activate()
+    await client.activate()
     stompClientRef.current = client
+    } catch (err) {
+      setSimulating(false)
+    }
   }, [authFetch, currency])
 
   const stopSimulation = useCallback(async () => {
