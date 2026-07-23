@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo } from 'react'
+import { useEffect, useRef } from 'react'
 import { createChart, ColorType, type IChartApi, type ISeriesApi, type CandlestickData, type LineData, type HistogramData, type Time, type MouseEventParams } from 'lightweight-charts'
 import type { Candle } from '../App'
 
@@ -35,7 +35,7 @@ type TooltipInfo = {
   y: number
 } | null
 
-export default memo(function CandlestickChart({ data, indicators, colors, height = 420, showMA = true, showBB = false, showRSI = false, showMACD = false }: Props) {
+export default function CandlestickChart({ data, indicators, colors, height = 420, showMA = true, showBB = false, showRSI = false, showMACD = false }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null)
@@ -332,11 +332,11 @@ export default memo(function CandlestickChart({ data, indicators, colors, height
       <div ref={containerRef} className="chart-container" />
     </div>
   )
-})
+}
 
 // ── MACD Panel ──
 
-export const MACDPanel = memo(function MACDPanel({ data, macdLine, signal, histogram }: {
+export function MACDPanel({ data, macdLine, signal, histogram }: {
   data: Candle[]
   macdLine?: (number | null)[]
   signal?: (number | null)[]
@@ -441,11 +441,11 @@ export const MACDPanel = memo(function MACDPanel({ data, macdLine, signal, histo
       <div ref={containerRef} />
     </div>
   )
-})
+}
 
 // ── RSI Panel ──
 
-export const RSIPanel = memo(function RSIPanel({ data, rsi }: { data: Candle[]; rsi?: (number | null)[] }) {
+export function RSIPanel({ data, rsi }: { data: Candle[]; rsi?: (number | null)[] }) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -506,4 +506,4 @@ export const RSIPanel = memo(function RSIPanel({ data, rsi }: { data: Candle[]; 
       <div ref={containerRef} />
     </div>
   )
-})
+}

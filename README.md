@@ -107,7 +107,7 @@
 | **Spring Data JPA** | Database access |
 | **PostgreSQL** | Primary database (via Neon) |
 | **H2** | Local development database |
-| **Flyway** | Database migrations |
+| **JPA/Hibernate** | Database ORM & schema management |
 | **Finnhub API** | Real-time market data |
 | **Docker** | Containerized deployment |
 | **Render** | Cloud hosting |
@@ -130,7 +130,7 @@ cd stockFlow
 
 # 2. Start backend
 cd backend
-./mvnw spring-boot:run -Dspring.profiles.active=postgres
+mvn spring-boot:run -Dspring.profiles.active=postgres
 
 # 3. Start frontend (new terminal)
 cd frontend
@@ -259,7 +259,7 @@ stockflow/
 ```bash
 # Backend tests
 cd backend
-./mvnw test
+mvn test
 
 # Frontend build & typecheck
 cd frontend
@@ -328,7 +328,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 ## 📄 License
 
-Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+Distributed under the MIT License.
 
 ---
 

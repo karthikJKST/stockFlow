@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { TrendingUp, TrendingDown, BarChart3, DollarSign, Activity, ArrowUpRight, ArrowDownRight } from 'lucide-react'
 import type { MarketData, NewsItem } from '../App'
 import SentimentOverview from './SentimentOverview'
@@ -37,7 +36,7 @@ function IndexCard({ name, symbol, value, change, changePercent }: {
   )
 }
 
-export default memo(function MarketOverview({ marketData, news, onStockSelect, formatMoney, formatLarge, priceFlash }: Props) {
+export default function MarketOverview({ marketData, news, onStockSelect, formatMoney, formatLarge, priceFlash }: Props) {
   const { indices, totalStocks, totalVolume, advancers, decliners, topGainers, topLosers } = marketData
 
   // Animated stat values (hooks at top level, not in loops)
@@ -160,4 +159,4 @@ export default memo(function MarketOverview({ marketData, news, onStockSelect, f
       <SentimentOverview news={news} />
     </div>
   )
-})
+}
