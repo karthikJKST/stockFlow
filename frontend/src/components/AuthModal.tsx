@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { X, LogIn, UserPlus, DollarSign, Eye, EyeOff } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
@@ -15,6 +15,15 @@ export default function AuthModal({ onClose }: Props) {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [showPwd, setShowPwd] = useState(false)
+
+  // Close on Escape key
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [onClose])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,30 +44,36 @@ export default function AuthModal({ onClose }: Props) {
   }
 
   return (
-    <div className="auth-overlay" onClick={onClose}>
+    <div className="auth-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
       <div className="auth-modal glass" onClick={e => e.stopPropagation()}>
         <button className="auth-close" onClick={onClose}>
           <X size={18} />
         </button>
 
         <div className="auth-brand">
-          <DollarSign size={28} />
-          <h2>StockFlow</h2>
+          <DollarSign size={28} aria-hidden="true" />
+          <h2 id="auth-modal-title">StockFlow</h2>
           <p>Sign in to your trading dashboard</p>
         </div>
 
-        <div className="auth-tabs">
+        <div className="auth-tabs" role="tablist" aria-label="Authentication mode">
           <button
             className={`auth-tab ${mode === 'login' ? 'active' : ''}`}
             onClick={() => { setMode('login'); setError('') }}
+            role="tab"
+            aria-selected={mode === 'login'}
+            aria-label="Sign in with existing account"
           >
-            <LogIn size={15} /> Sign In
+            <LogIn size={15} aria-hidden="true" /> Sign In
           </button>
           <button
             className={`auth-tab ${mode === 'register' ? 'active' : ''}`}
             onClick={() => { setMode('register'); setError('') }}
+            role="tab"
+            aria-selected={mode === 'register'}
+            aria-label="Create a new account"
           >
-            <UserPlus size={15} /> Register
+            <UserPlus size={15} aria-hidden="true" /> Register
           </button>
         </div>
 
@@ -105,8 +120,8 @@ export default function AuthModal({ onClose }: Props) {
 
           {error && <div className="auth-error">{error}</div>}
 
-          <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-            {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Create Account'}
+          <button type="submit" className="btn btn-primary btn-block" disabled={loading} aria-busy={loading}>
+            {loading ? 'Processing...' : mode === 'login' ? 'Sign In' : 'Create Account'}
           </button>
 
           {mode === 'login' && (

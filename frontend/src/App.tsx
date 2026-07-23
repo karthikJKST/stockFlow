@@ -309,6 +309,18 @@ export default function App() {
     }
   }, [])
 
+  // Escape key closes modals
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowNotifications(false)
+        setSidebarOpen(false)
+      }
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [])
+
   const toggleWatchlist = (stockId: number) => {
     setWatchlist(prev => {
       const next = prev.includes(stockId) ? prev.filter(id => id !== stockId) : [...prev, stockId]
@@ -467,8 +479,10 @@ export default function App() {
               key={item.id}
               className={`nav-item ${view === item.id ? 'active' : ''}`}
               onClick={() => { setView(item.id); setSidebarOpen(false); setSelectedStockId(null) }}
+              aria-label={`Navigate to ${item.label}`}
+              aria-current={view === item.id ? 'page' : undefined}
             >
-              <item.icon size={19} />
+              <item.icon size={19} aria-hidden="true" />
               <span>{item.label}</span>
               {item.id === 'stocks' && <span className="nav-badge">{stocks.length}</span>}
             </button>
@@ -483,8 +497,10 @@ export default function App() {
           <button
             className={`sim-btn ${simulating ? 'stop' : 'start'}`}
             onClick={simulating ? stopSimulation : startSimulation}
+            aria-label={simulating ? 'Stop live streaming' : 'Start live streaming'}
+            aria-pressed={simulating}
           >
-            <Zap size={14} />
+            <Zap size={14} aria-hidden="true" />
             {simulating ? 'Stop' : 'Start'} Live
           </button>
           <div className="profile-card" onClick={() => { if (user) { setView('portfolio'); setSidebarOpen(false) } else setShowAuth(true) }} style={{cursor:'pointer'}}>
@@ -496,21 +512,21 @@ export default function App() {
               <small>{user ? `@${user.username}` : 'Click to sign in'}</small>
             </div>
           </div>
-          <button className="sim-btn theme-toggle" onClick={toggleTheme}>
-            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          <button className="sim-btn theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
+            {theme === 'dark' ? <Sun size={14} aria-hidden="true" /> : <Moon size={14} aria-hidden="true" />}
             {theme === 'dark' ? 'Light' : 'Dark'} Mode
           </button>
           <button className="sim-btn" onClick={() => {
             const next = soundEnabled === 'on' ? 'off' : 'on'
             setSoundEnabled(next)
             localStorage.setItem('stockflow_sound', next)
-          }}>
-            {soundEnabled === 'on' ? <Volume2 size={14} /> : <VolumeX size={14} />}
+          }} aria-label={`Sound ${soundEnabled === 'on' ? 'off' : 'on'}`} aria-pressed={soundEnabled === 'on'}>
+            {soundEnabled === 'on' ? <Volume2 size={14} aria-hidden="true" /> : <VolumeX size={14} aria-hidden="true" />}
             {soundEnabled === 'on' ? 'Sound On' : 'Sound Off'}
           </button>
           {user && (
-            <button className="sim-btn" onClick={() => { logout(); setShowAuth(true) }}>
-              <LogIn size={12} /> Sign Out
+            <button className="sim-btn" onClick={() => { logout(); setShowAuth(true) }} aria-label="Sign out of your account">
+              <LogIn size={12} aria-hidden="true" /> Sign Out
             </button>
           )}
         </div>
@@ -527,8 +543,8 @@ export default function App() {
               <Menu size={22} />
             </button>
             {view === 'stocks' && selectedStockId ? (
-              <button className="back-btn" onClick={() => setSelectedStockId(null)}>
-                <ArrowUpRight size={16} style={{ transform: 'rotate(-45deg)' }} />
+              <button className="back-btn" onClick={() => setSelectedStockId(null)} aria-label="Go back to stock list">
+                <ArrowUpRight size={16} style={{ transform: 'rotate(-45deg)' }} aria-hidden="true" />
                 <span>Back to stocks</span>
               </button>
             ) : (
@@ -547,12 +563,13 @@ export default function App() {
           <div className="header-right">
             {view !== 'watchlist' && (
               <div className="search-box">
-                <Search size={16} />
+                <Search size={16} aria-hidden="true" />
                 <input
                   type="text"
                   placeholder="Search stocks..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
+                  aria-label="Search stocks by name or symbol"
                 />
               </div>
             )}

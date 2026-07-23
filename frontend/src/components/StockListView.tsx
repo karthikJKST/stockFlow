@@ -21,15 +21,15 @@ export default function StockListView({
 }: Props) {
   return (
     <div className="stock-list-view">
-      <div className="stock-list-header">
-        <div className="search-wrapper">
-          <Search size={17} />
+      <div className="stock-list-header">              <div className="search-wrapper">
+          <Search size={17} aria-hidden="true" />
           <input
             type="text"
             placeholder={isWatchlist ? 'Filter watchlist...' : 'Search by name or symbol...'}
             value={searchQuery}
             onChange={e => onSearchChange(e.target.value)}
             autoFocus={!isWatchlist}
+            aria-label={isWatchlist ? 'Filter watchlist' : 'Search stocks'}
           />
         </div>
         <div className="stock-count">
@@ -54,8 +54,14 @@ export default function StockListView({
               <tbody>
                 {filtered.map((stock, i) => {
                   const handleClick = () => onStockSelect(stock.id)
+                  const handleKeyDown = (e: React.KeyboardEvent) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      handleClick()
+                    }
+                  }
                   return (
-                    <tr key={stock.id} className="stock-row" onClick={handleClick} style={{ '--i': i } as React.CSSProperties}>
+                    <tr key={stock.id} className="stock-row" onClick={handleClick} onKeyDown={handleKeyDown} tabIndex={0} aria-label={`View ${stock.symbol} - ${stock.name}`} style={{ '--i': i } as React.CSSProperties}>
                       <td className="col-star" onClick={e => { e.stopPropagation(); }}>
                         <button
                           className={`star-btn ${watchlist.includes(stock.id) ? 'active' : ''}`}
