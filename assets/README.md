@@ -1,24 +1,25 @@
-# Assets
+# Screenshots
 
-This directory contains screenshots for the StockFlow README.
+This directory contains screenshots of the live StockFlow application.
 
-## Screenshots to Add
+## Available Screenshots
 
-| File | Description |
-|------|-------------|
-| `login.png` | Login/Register modal |
-| `dashboard.png` | Market Overview with indices, stats, gainers/losers |
-| `stocks.png` | Stock list with search and screener |
-| `stock-detail.png` | Stock detail with candlestick chart and indicators |
-| `portfolio.png` | Portfolio view with holdings and performance |
-| `watchlist.png` | Watchlist view |
-| `compare.png` | Stock comparison view |
-| `news.png` | News feed with sentiment analysis |
+| File | View |
+|------|------|
+| `dashboard.png` | Market Overview — indices, stat cards, top gainers/losers, and news sentiment |
+| `stocks.png` | Stock List with search, sortable table, and price flash indicators |
+| `stock-detail.png` | Stock Detail — candlestick chart, technical indicators (MA, RSI, MACD) |
+| `portfolio.png` | Portfolio View — holdings table, performance chart, allocation pie chart |
+| `compare.png` | Compare View — normalized performance overlay and side-by-side metrics |
+| `news.png` | News Feed with sentiment badges and symbol filtering |
 
-## Generating Screenshots
+## Regenerating Screenshots
 
-1. Open the live demo at [https://stock-flow-ashen.vercel.app](https://stock-flow-ashen.vercel.app)
-2. Log in with `demo` / `demo123`
-3. Capture each view using your browser's screenshot tool or a tool like [FireShot](https://getfireshot.com/)
-4. Save files as PNG (preferably 1280×800 or similar) in this directory
-5. The README will reference these screenshots automatically
+To regenerate screenshots, run:
+
+```bash
+cd frontend
+npm install --no-save puppeteer
+node ../scripts/screenshots.mjs
+npm uninstall puppeteer
+```

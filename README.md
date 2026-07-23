@@ -270,15 +270,14 @@ npm run build
 
 ## 📸 Screenshots
 
-> *Screenshots coming soon. See the [`assets/`](assets/) directory for placeholder images.*
-
-| View | Description |
-|------|-------------|
-| **Market Overview** | Indices strip, market stats, top gainers/losers, news sentiment |
-| **Stock Detail** | Candlestick chart, technical indicators, order book, trading panel |
-| **Portfolio** | Holdings table, performance chart, allocation pie chart |
-| **Compare** | Normalized performance overlay, side-by-side metrics table |
-| **News Feed** | Filterable news grid with sentiment badges |
+| View | Screenshot |
+|------|-----------|
+| **Market Overview** | ![Dashboard](assets/dashboard.png) |
+| **Stock List** | ![Stocks](assets/stocks.png) |
+| **Stock Detail** | ![Stock Detail](assets/stock-detail.png) |
+| **Portfolio** | ![Portfolio](assets/portfolio.png) |
+| **Compare View** | ![Compare](assets/compare.png) |
+| **News Feed** | ![News](assets/news.png) |
 
 ---
 
