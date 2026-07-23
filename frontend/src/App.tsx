@@ -102,6 +102,7 @@ export default function App() {
     return saved ? JSON.parse(saved) : [1, 3, 5]
   })
   const [simulating, setSimulating] = useState(false)
+  const [dataSource, setDataSource] = useState<'live' | 'simulated' | 'simulated_fallback' | 'rate_limited'>('simulated')
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     // Prefer server theme from user object, fallback to localStorage, default dark
     const saved = localStorage.getItem('stockflow_theme')
@@ -195,6 +196,7 @@ export default function App() {
         client.subscribe('/topic/prices', (message: IMessage) => {
           try {
             const snapshot = JSON.parse(message.body)
+            if (snapshot.dataSource) setDataSource(snapshot.dataSource)
             if (snapshot.stocks) {
               const newFlash = new Map<number, 'up' | 'down'>()
               const prev = prevPricesRef.current
@@ -475,8 +477,8 @@ export default function App() {
 
         <div className="sidebar-footer">
           <div className="live-indicator">
-            <span className={`live-dot ${simulating ? 'active' : ''}`} />
-            <span>{simulating ? 'Live' : 'Paused'}</span>
+            <span className={`live-dot ${simulating ? 'active' : ''} data-source-${dataSource}`} />
+            <span className="live-label">{simulating ? (dataSource === 'live' ? 'Live' : dataSource === 'rate_limited' ? 'Rate Limited' : 'Simulated') : 'Paused'}</span>
           </div>
           <button
             className={`sim-btn ${simulating ? 'stop' : 'start'}`}
