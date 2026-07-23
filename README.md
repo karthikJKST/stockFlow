@@ -130,7 +130,7 @@ cd stockFlow
 
 # 2. Start backend
 cd backend
-mvn spring-boot:run -Dspring.profiles.active=postgres
+./mvnw spring-boot:run -Dspring.profiles.active=postgres
 
 # 3. Start frontend (new terminal)
 cd frontend
@@ -259,7 +259,7 @@ stockflow/
 ```bash
 # Backend tests
 cd backend
-mvn test
+./mvnw test
 
 # Frontend build & typecheck
 cd frontend
