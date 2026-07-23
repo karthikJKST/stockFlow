@@ -7,7 +7,7 @@ RUN mvn package -DskipTests -B
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /app/target/stockflow-api-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 # Render injects PORT env var; Spring Boot reads it via server.port in application-prod.yml
 EXPOSE 8080

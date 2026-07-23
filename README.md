@@ -193,7 +193,7 @@ StockFlow is designed to be deployed with **Vercel** (frontend) + **Render** (ba
    - **Name**: `stockflow-api`
    - **Runtime**: `Java` (Render auto-detects Maven)
    - **Build Command**: `cd backend && mvn clean package -DskipTests -B`
-   - **Start Command**: `java -jar backend/target/stockflow-api-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod`
+   - **Start Command**: `java -jar backend/target/stockflow-api-1.0.0.jar --spring.profiles.active=prod`
    - **Plan**: Free
 5. Add these **Environment Variables**:
 
