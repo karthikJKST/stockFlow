@@ -1,10 +1,12 @@
 backend/target/
+backend/spring-boot.log
 frontend/node_modules/
 frontend/dist/
 .idea/
 .vscode/*.log
 *.iml
 .env
+*.log
 
 # Windows reserved device names
 [Nn][Uu][Ll]
