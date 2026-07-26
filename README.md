@@ -343,6 +343,15 @@ Distributed under the MIT License.
 
 ---
 
+## 👤 Author
+
+**Karthik Siva Teja**
+
+- GitHub: [@karthikJKST](https://github.com/karthikJKST)
+- LinkedIn: [Karthik Siva Teja](https://www.linkedin.com/in/karthik-siva-teja-jana-a367a0275/)
+
+---
+
 <p align="center">
   Built with ❤️ by <a href="https://github.com/karthikJKST">Karthik JKST</a>
 </p>
